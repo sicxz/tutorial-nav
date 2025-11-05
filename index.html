@@ -4,417 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sidebar to Mobile Nav Tutorial</title>
-  <style>
-    /* ===== BASE STYLES ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Scroll offset for anchor links */
-    .tutorial-sections section {
-      scroll-margin-top: 2rem;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.7;
-      color: #2c3e50;
-      background: #ecf0f1;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin-bottom: 1rem;
-      font-weight: 800;
-    }
-
-    header p {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      opacity: 0.95;
-    }
-
-    .goal-box {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .goal-box h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .goal-box ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .goal-box li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-
-    .goal-box li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #a8ff78;
-      font-weight: bold;
-    }
-
-    /* ===== TUTORIAL LAYOUT ===== */
-    .tutorial-container {
-      display: flex;
-      gap: 0;
-      max-width: 100%;
-      margin: 0 auto;
-      background: #ecf0f1;
-    }
-
-    /* Tutorial Sections - Left side (scrollable) */
-    .tutorial-sections {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    /* CodePen Area - Right side (sticky, fills remaining space) */
-    .codepen-area {
-      position: sticky;
-      top: 0;
-      width: 50%;
-      height: 100vh;
-      background: white;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .codepen-header {
-      padding: 1.5rem;
-      border-bottom: 2px solid #ecf0f1;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
-
-    .codepen-header h3 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.3rem;
-      padding-left: 0;
-      border: none;
-      color: white;
-    }
-
-    .codepen-header p {
-      margin: 0;
-      font-size: 0.9rem;
-      opacity: 0.95;
-    }
-
-    .codepen-area iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      background: #1e1e1e;
-    }
-
-    /* ===== SECTIONS ===== */
-    .tutorial-sections section {
-      background: white;
-      margin: 0 0 2rem 0;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      max-width: 900px;
-    }
-
-    section h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: #667eea;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .part-number {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-
-    section h3 {
-      font-size: 1.5rem;
-      color: #2c3e50;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      padding-left: 1rem;
-      border-left: 4px solid #667eea;
-    }
-
-    section p {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-
-    section strong {
-      color: #667eea;
-    }
-
-    /* ===== LISTS ===== */
-    ul, ol {
-      margin: 1.5rem 0;
-      padding-left: 2rem;
-    }
-
-    li {
-      margin: 0.5rem 0;
-      font-size: 1.05rem;
-    }
-
-    /* ===== CODE BLOCKS ===== */
-    pre {
-      background: #2d3748;
-      color: #e2e8f0;
-      padding: 1.5rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 1.5rem 0;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    code {
-      font-family: "Fira Code", "Courier New", monospace;
-    }
-
-    .inline-code {
-      background: #edf2f7;
-      color: #d53f8c;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.9em;
-      font-family: "Fira Code", monospace;
-    }
-
-    /* ===== INFO BOXES ===== */
-    .info-box {
-      background: #ebf8ff;
-      border-left: 4px solid #3182ce;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 4px;
-    }
-
-    .info-box.research {
-      background: #faf089;
-      border-left-color: #d69e2e;
-    }
-
-    .info-box.warning {
-      background: #fed7d7;
-      border-left-color: #e53e3e;
-    }
-
-    .info-box.success {
-      background: #c6f6d5;
-      border-left-color: #38a169;
-    }
-
-    .info-box h4 {
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .info-box p {
-      margin-bottom: 0.5rem;
-    }
-
-    .info-box ul {
-      margin-top: 0.5rem;
-    }
-
-    /* ===== REFLECTION BOXES ===== */
-    .reflection {
-      background: #f7fafc;
-      border: 2px dashed #a0aec0;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-radius: 8px;
-    }
-
-    .reflection h4 {
-      color: #667eea;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-    }
-
-    .reflection p {
-      font-style: italic;
-      color: #718096;
-    }
-
-    /* ===== DEMO AREA ===== */
-    .demo-container {
-      background: #f7fafc;
-      border: 2px solid #e2e8f0;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 2rem 0;
-    }
-
-    .demo-label {
-      color: #718096;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-weight: 600;
-    }
-
-    /* Demo: Sidebar Layout */
-    .demo-sidebar-layout {
-      display: flex;
-      min-height: 300px;
-      background: white;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .demo-sidebar {
-      width: 250px;
-      background: #2c3e50;
-      color: white;
-      padding: 1rem;
-      flex-shrink: 0;
-    }
-
-    .demo-sidebar h3 {
-      color: white;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      padding-left: 0;
-      border: none;
-    }
-
-    .demo-sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .demo-sidebar li {
-      margin: 0.5rem 0;
-    }
-
-    .demo-sidebar a {
-      color: #ecf0f1;
-      text-decoration: none;
-      display: block;
-      padding: 0.5rem;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-
-    .demo-sidebar a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .demo-main {
-      flex: 1;
-      padding: 2rem;
-      background: #ecf0f1;
-    }
-
-    .demo-main h3 {
-      margin-top: 0;
-      color: #2c3e50;
-      font-size: 1.3rem;
-      padding-left: 0;
-      border: none;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .tutorial-container {
-        flex-direction: column;
-      }
-
-      .codepen-area {
-        width: 100%;
-        height: 500px;
-        position: relative;
-      }
-
-      .tutorial-sections {
-        padding: 1rem;
-      }
-
-      .tutorial-sections section {
-        padding: 1.5rem;
-      }
-
-      header {
-        padding: 2rem 1rem;
-      }
-
-      .goal-box {
-        padding: 1.5rem;
-      }
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-    }
-
-    footer p {
-      margin: 0.5rem 0;
-    }
-
-    footer p:last-child {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-  </style>
+  <link rel="stylesheet" href="tutorial-styles.css">
 </head>
 <body>
   <header>
     <h1>Sidebar to Mobile Nav Tutorial</h1>
     <p>Learn how to build a responsive layout that transforms a desktop sidebar navigation into a mobile-friendly top navigation bar with a hamburger menu—all using modern CSS techniques!</p>
+
+    <!-- Progress Tracker -->
+    <div class="progress-container">
+      <div class="progress-label">
+        <span id="progress-text">0 of 9 sections complete (0%)</span>
+        <button id="reset-progress" class="reset-button">Reset Progress</button>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="progress-bar" class="progress-bar-fill"></div>
+      </div>
+    </div>
 
     <div class="goal-box">
       <h2>What you'll learn:</h2>
@@ -431,69 +37,81 @@
   </header>
 
   <div class="tutorial-container">
-      <!-- Tutorial Sections (Middle) -->
-      <main class="tutorial-sections">
-    <!-- PART A -->
-    <section id="part-a">
-      <h2><span class="part-number">A</span>Understanding the Layout Pattern</h2>
+    <!-- Tutorial Steps (Left side, scrollable) -->
+    <main class="tutorial-steps">
 
-      <p><strong>Goal:</strong> Understand the desktop sidebar pattern and how it transforms for mobile devices.</p>
-
-      <h3>📋 The Pattern:</h3>
-      <p>A sidebar navigation is perfect for desktop screens where horizontal space is abundant. On mobile devices, however, a fixed sidebar would consume too much screen real estate. The solution? Transform it into a top navigation bar with a collapsible menu.</p>
-
-      <div class="demo-container">
-        <div class="demo-label">DESKTOP VIEW: Sidebar + Main Content</div>
-        <div class="demo-sidebar-layout">
-          <aside class="demo-sidebar">
-            <h3>Navigation</h3>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </aside>
-          <main class="demo-main">
-            <h3>Main Content Area</h3>
-            <p>This is where your page content lives. The sidebar stays fixed on the left, providing easy access to navigation.</p>
-          </main>
+      <!-- ===== PART A ===== -->
+      <section class="tutorial-section" id="part-a">
+        <div class="section-header">
+          <h2><span class="part-number">A</span>Understanding the Layout Pattern</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="a">
+              <span>Mark as complete</span>
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div class="info-box">
-        <h4>🤔 Why transform the sidebar?</h4>
-        <ul>
-          <li><strong>Space efficiency:</strong> Mobile screens are narrow—a sidebar would take up 40-50% of the width</li>
-          <li><strong>User expectations:</strong> Mobile users expect top navigation or hamburger menus</li>
-          <li><strong>Touch targets:</strong> Vertical menus work better with thumb-friendly tap zones</li>
-          <li><strong>Content priority:</strong> On mobile, content should be the focus, not navigation</li>
-        </ul>
-      </div>
+        <p><strong>Goal:</strong> Understand the desktop sidebar pattern and how it transforms for mobile devices.</p>
 
-      <div class="reflection">
-        <h4>🧠 Reflection:</h4>
-        <p>Think about websites you use daily. Which ones use sidebar navigation on desktop? How do they handle mobile? What patterns do you see repeated?</p>
-      </div>
-    </section>
+        <div class="step-card">
+          <h3>📋 The Pattern</h3>
+          <p>A sidebar navigation is perfect for desktop screens where horizontal space is abundant. On mobile devices, however, a fixed sidebar would consume too much screen real estate. The solution? Transform it into a top navigation bar with a collapsible menu.</p>
 
-    <!-- PART B -->
-    <section id="part-b">
-      <h2><span class="part-number">B</span>Build the HTML Structure</h2>
+          <button class="btn-toggle-solution" data-solution="solution-a1">💡 Show Key Insight</button>
+          <div class="solution-box hidden" id="solution-a1">
+            <h4>Why This Pattern Works:</h4>
+            <ul>
+              <li><strong>Space efficiency:</strong> Mobile screens are narrow—a sidebar would take up 40-50% of the width</li>
+              <li><strong>User expectations:</strong> Mobile users expect top navigation or hamburger menus</li>
+              <li><strong>Touch targets:</strong> Vertical menus work better with thumb-friendly tap zones</li>
+              <li><strong>Content priority:</strong> On mobile, content should be the focus, not navigation</li>
+            </ul>
+          </div>
+        </div>
 
-      <p><strong>Goal:</strong> Create semantic HTML that supports both desktop sidebar and mobile navigation layouts.</p>
+        <div class="checkpoint" id="checkpoint-a">
+          <h4>✅ Checkpoint A</h4>
+          <p>Before moving on, make sure you understand:</p>
+          <ul class="checklist">
+            <li><input type="checkbox"> Why sidebars work well on desktop but not on mobile</li>
+            <li><input type="checkbox"> What "off-canvas" navigation means</li>
+            <li><input type="checkbox"> The difference between desktop-first and mobile-first design</li>
+          </ul>
+        </div>
 
-      <h3>📋 Your HTML should include:</h3>
-      <ul>
-        <li>A container <span class="inline-code">&lt;div class="layout-container"&gt;</span> to hold everything</li>
-        <li>An <span class="inline-code">&lt;aside&gt;</span> element with class <span class="inline-code">sidebar</span> for navigation</li>
-        <li>A checkbox and label for mobile menu toggle (the "checkbox hack")</li>
-        <li>A <span class="inline-code">&lt;main&gt;</span> element for page content</li>
-        <li>Multiple content sections to demonstrate scrolling</li>
-      </ul>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>Think about websites you use daily. Which ones use sidebar navigation on desktop? How do they handle mobile?</p>
+          <textarea class="reflection-input" data-step="a" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="a">💾 Save Reflection</button>
+        </div>
+      </section>
 
-      <h3>📝 HTML Template:</h3>
+      <!-- ===== PART B ===== -->
+      <section class="tutorial-section" id="part-b">
+        <div class="section-header">
+          <h2><span class="part-number">B</span>Build the HTML Structure</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="b">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
+
+        <p><strong>Goal:</strong> Create semantic HTML that supports both desktop sidebar and mobile navigation layouts.</p>
+
+        <div class="step-card">
+          <h3>📝 HTML Template</h3>
+          <p>Your HTML should include:</p>
+          <ul>
+            <li>A container <span class="inline-code">&lt;div class="layout-container"&gt;</span></li>
+            <li>A checkbox and label for mobile menu toggle (the "checkbox hack")</li>
+            <li>An <span class="inline-code">&lt;aside&gt;</span> element for the sidebar</li>
+            <li>A <span class="inline-code">&lt;main&gt;</span> element for page content</li>
+          </ul>
+
 <pre><code>&lt;div class="layout-container"&gt;
   &lt;!-- Checkbox for mobile menu toggle (hidden) --&gt;
   &lt;input type="checkbox" id="sidebar-toggle" class="sidebar-toggle"&gt;
@@ -533,57 +151,67 @@
       &lt;h2&gt;Home&lt;/h2&gt;
       &lt;p&gt;Welcome to the home section...&lt;/p&gt;
     &lt;/section&gt;
-
-    &lt;section id="about"&gt;
-      &lt;h2&gt;About&lt;/h2&gt;
-      &lt;p&gt;Learn more about us...&lt;/p&gt;
-    &lt;/section&gt;
-
-    &lt;!-- Add more sections as needed --&gt;
   &lt;/main&gt;
 &lt;/div&gt;</code></pre>
 
-      <div class="info-box">
-        <h4>💡 Key structural decisions:</h4>
-        <ul>
-          <li><strong>Checkbox hack:</strong> The hidden checkbox will control sidebar visibility on mobile</li>
-          <li><strong>Two headers:</strong> Sidebar header (desktop) and mobile header (mobile only)</li>
-          <li><strong>Close button:</strong> The × in the sidebar closes it on mobile</li>
-          <li><strong>Hamburger in main:</strong> The hamburger icon opens the mobile menu</li>
-        </ul>
-      </div>
+          <button class="btn-toggle-solution" data-solution="solution-b1">💡 Show Key Decisions</button>
+          <div class="solution-box hidden" id="solution-b1">
+            <h4>Understanding the Structure:</h4>
+            <ul>
+              <li><strong>Checkbox hack:</strong> The hidden checkbox controls sidebar visibility on mobile</li>
+              <li><strong>Two headers:</strong> Sidebar header (desktop) and mobile header (mobile only)</li>
+              <li><strong>Close button:</strong> The × in sidebar closes it on mobile</li>
+              <li><strong>Hamburger in main:</strong> Opens the mobile menu</li>
+            </ul>
+          </div>
+        </div>
 
-      <h3>✅ Self-Check:</h3>
-      <ul>
-        <li>Is your checkbox <span class="inline-code">id</span> connected to both labels via <span class="inline-code">for</span> attributes?</li>
-        <li>Do you have both a sidebar header and a mobile header?</li>
-        <li>Are your section IDs matching your navigation href values?</li>
-      </ul>
+        <div class="checkpoint" id="checkpoint-b">
+          <h4>✅ Checkpoint B</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Checkbox ID is connected to both labels via <span class="inline-code">for</span> attributes</li>
+            <li><input type="checkbox"> You have both a sidebar header and a mobile header</li>
+            <li><input type="checkbox"> Section IDs match navigation href values</li>
+            <li><input type="checkbox"> HTML structure is semantic (aside, nav, main)</li>
+          </ul>
+        </div>
 
-      <div class="reflection">
-        <h4>🧠 Reflection:</h4>
-        <p>Why do we need TWO headers (one in sidebar, one in main)? Why not just reposition one header with CSS?</p>
-      </div>
-    </section>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>Why do we need TWO headers (one in sidebar, one in main)? Why not just reposition one header with CSS?</p>
+          <textarea class="reflection-input" data-step="b" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="b">💾 Save Reflection</button>
+        </div>
+      </section>
 
-    <!-- PART C -->
-    <section id="part-c">
-      <h2><span class="part-number">C</span>Style the Desktop Sidebar Layout</h2>
+      <!-- ===== PART C ===== -->
+      <section class="tutorial-section" id="part-c">
+        <div class="section-header">
+          <h2><span class="part-number">C</span>Style the Desktop Sidebar Layout</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="c">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-      <p><strong>Goal:</strong> Create a two-column layout with a fixed sidebar on the left.</p>
+        <p><strong>Goal:</strong> Create a two-column layout with a fixed sidebar on the left.</p>
 
-      <h3>📚 Research these properties:</h3>
-      <div class="info-box research">
-        <ul>
-          <li><span class="inline-code">display: flex</span></li>
-          <li><span class="inline-code">position: fixed</span></li>
-          <li><span class="inline-code">width</span> and <span class="inline-code">height: 100vh</span></li>
-          <li><span class="inline-code">margin-left</span> to offset main content</li>
-        </ul>
-      </div>
+        <div class="step-card">
+          <h3>📚 Research First</h3>
+          <p>Before coding, research these CSS properties:</p>
+          <ul>
+            <li><span class="inline-code">display: flex</span></li>
+            <li><span class="inline-code">position: fixed</span></li>
+            <li><span class="inline-code">width</span> and <span class="inline-code">height: 100vh</span></li>
+            <li><span class="inline-code">margin-left</span> to offset main content</li>
+          </ul>
+        </div>
 
-      <h3>🎨 Your Task:</h3>
-      <p>Start with the desktop layout (we'll add mobile later):</p>
+        <div class="step-card">
+          <h3>🎨 Your Task</h3>
+          <p>Start with the desktop layout (mobile comes later):</p>
 
 <pre><code>/* Hide the checkbox */
 .sidebar-toggle {
@@ -609,21 +237,6 @@
   z-index: 1000;
 }
 
-.sidebar-header {
-  padding: 2rem 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.sidebar-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-/* Hide close button on desktop */
-.close-btn {
-  display: none;
-}
-
 /* Main content - offset by sidebar width */
 .main-content {
   flex: 1;
@@ -636,69 +249,52 @@
   display: none;
 }</code></pre>
 
-      <h3>🎨 Style the Navigation Links:</h3>
-<pre><code>.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+          <button class="btn-toggle-solution" data-solution="solution-c1">💡 Show Explanation</button>
+          <div class="solution-box hidden" id="solution-c1">
+            <h4>How It Works:</h4>
+            <ul>
+              <li><span class="inline-code">position: fixed</span> — Sidebar stays in place while content scrolls</li>
+              <li><span class="inline-code">height: 100vh</span> — Sidebar is always full viewport height</li>
+              <li><span class="inline-code">margin-left: 280px</span> — Main content doesn't hide under sidebar</li>
+              <li><span class="inline-code">overflow-y: auto</span> — Sidebar scrolls if navigation is long</li>
+            </ul>
+          </div>
+        </div>
 
-.sidebar-nav li {
-  margin: 0;
-}
+        <div class="checkpoint" id="checkpoint-c">
+          <h4>✅ Checkpoint C</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Sidebar is visible and fixed on the left side</li>
+            <li><input type="checkbox"> Main content sits beside (not under) the sidebar</li>
+            <li><input type="checkbox"> Can scroll the page while sidebar stays in place</li>
+            <li><input type="checkbox"> Navigation links are styled and interactive</li>
+          </ul>
+        </div>
 
-.sidebar-nav a {
-  display: block;
-  padding: 1rem 1.5rem;
-  color: #ecf0f1;
-  text-decoration: none;
-  transition: background 0.3s, padding-left 0.3s;
-  border-left: 3px solid transparent;
-}
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>What's the difference between <span class="inline-code">position: fixed</span> and <span class="inline-code">position: sticky</span>? When would you use each?</p>
+          <textarea class="reflection-input" data-step="c" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="c">💾 Save Reflection</button>
+        </div>
+      </section>
 
-.sidebar-nav a:hover {
-  background: rgba(255,255,255,0.1);
-  padding-left: 2rem;
-  border-left-color: #667eea;
-}
+      <!-- ===== PART D ===== -->
+      <section class="tutorial-section" id="part-d">
+        <div class="section-header">
+          <h2><span class="part-number">D</span>Create the Mobile Top Bar</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="d">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-.sidebar-nav a.active {
-  background: rgba(102, 126, 234, 0.3);
-  border-left-color: #667eea;
-  font-weight: 600;
-}</code></pre>
+        <p><strong>Goal:</strong> Add a mobile header with hamburger menu that appears on small screens.</p>
 
-      <div class="info-box">
-        <h4>💡 What's happening here?</h4>
-        <ul>
-          <li><span class="inline-code">position: fixed</span> — Sidebar stays in place while content scrolls</li>
-          <li><span class="inline-code">height: 100vh</span> — Sidebar is always full viewport height</li>
-          <li><span class="inline-code">margin-left: 280px</span> — Main content doesn't hide under sidebar</li>
-          <li><span class="inline-code">overflow-y: auto</span> — Sidebar scrolls if navigation is long</li>
-        </ul>
-      </div>
-
-      <h3>✅ Self-Check:</h3>
-      <ul>
-        <li>Is your sidebar visible and fixed on the left side?</li>
-        <li>Does the main content sit beside (not under) the sidebar?</li>
-        <li>Can you scroll the page while the sidebar stays in place?</li>
-      </ul>
-
-      <div class="reflection">
-        <h4>🧠 Reflection:</h4>
-        <p>What's the difference between <span class="inline-code">position: fixed</span> and <span class="inline-code">position: sticky</span>? When would you use each for a sidebar?</p>
-      </div>
-    </section>
-
-    <!-- PART D -->
-    <section id="part-d">
-      <h2><span class="part-number">D</span>Create the Mobile Top Bar</h2>
-
-      <p><strong>Goal:</strong> Add a mobile header with hamburger menu that appears on small screens.</p>
-
-      <h3>🎨 Your Task:</h3>
-      <p>Style the mobile header (hidden on desktop, visible on mobile):</p>
+        <div class="step-card">
+          <h3>🎨 Style the Mobile Header</h3>
 
 <pre><code>.mobile-header {
   background: #2c3e50;
@@ -710,12 +306,6 @@
   position: sticky;
   top: 0;
   z-index: 999;
-}
-
-.mobile-header h1 {
-  margin: 0;
-  font-size: 1.3rem;
-  font-weight: 600;
 }
 
 /* Hamburger icon */
@@ -734,38 +324,41 @@
   border-radius: 2px;
   transition: all 0.3s ease;
 }</code></pre>
+        </div>
 
-      <div class="info-box">
-        <h4>💡 Key points:</h4>
-        <ul>
-          <li><span class="inline-code">position: sticky</span> — Header scrolls with page but sticks to top</li>
-          <li><span class="inline-code">z-index: 999</span> — Stays above content (but below sidebar which is 1000)</li>
-          <li>Three <span class="inline-code">&lt;span&gt;</span> elements create the hamburger lines</li>
-        </ul>
-      </div>
+        <div class="checkpoint" id="checkpoint-d">
+          <h4>✅ Checkpoint D</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Mobile header is styled (but hidden on desktop for now)</li>
+            <li><input type="checkbox"> Hamburger icon uses three <span class="inline-code">&lt;span&gt;</span> elements</li>
+            <li><input type="checkbox"> Header uses <span class="inline-code">position: sticky</span></li>
+          </ul>
+        </div>
 
-      <h3>✅ Self-Check:</h3>
-      <p>On desktop, you should still see only the sidebar. The mobile header is styled but hidden. We'll reveal it with media queries next!</p>
-    </section>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>Why use <span class="inline-code">position: sticky</span> for the mobile header instead of <span class="inline-code">fixed</span>?</p>
+          <textarea class="reflection-input" data-step="d" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="d">💾 Save Reflection</button>
+        </div>
+      </section>
 
-    <!-- PART E -->
-    <section id="part-e">
-      <h2><span class="part-number">E</span>Add Media Query for Mobile Layout</h2>
+      <!-- ===== PART E ===== -->
+      <section class="tutorial-section" id="part-e">
+        <div class="section-header">
+          <h2><span class="part-number">E</span>Add Media Query for Mobile</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="e">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-      <p><strong>Goal:</strong> Transform the sidebar into an off-canvas mobile menu at 768px and below.</p>
+        <p><strong>Goal:</strong> Transform the sidebar into an off-canvas mobile menu at 768px and below.</p>
 
-      <h3>📚 Research these concepts:</h3>
-      <div class="info-box research">
-        <ul>
-          <li><span class="inline-code">@media</span> queries</li>
-          <li><span class="inline-code">max-width</span> breakpoints</li>
-          <li><span class="inline-code">transform: translateX()</span></li>
-          <li>Off-canvas navigation patterns</li>
-        </ul>
-      </div>
-
-      <h3>🎨 Your Task:</h3>
-      <p>Add this media query to transform the layout on mobile:</p>
+        <div class="step-card">
+          <h3>🎨 Mobile Media Query</h3>
 
 <pre><code>@media (max-width: 768px) {
   /* Show mobile header */
@@ -793,10 +386,6 @@
     top: 2rem;
     font-size: 2rem;
     cursor: pointer;
-    background: none;
-    border: none;
-    color: white;
-    line-height: 1;
   }
 
   /* When checkbox is checked, slide sidebar in */
@@ -817,46 +406,60 @@
   }
 }</code></pre>
 
-      <div class="info-box success">
-        <h4>🎉 What just happened?</h4>
-        <ol>
-          <li><strong>Desktop (>768px):</strong> Sidebar visible, mobile header hidden</li>
-          <li><strong>Mobile (≤768px):</strong> Sidebar slides off-screen to the left</li>
-          <li><strong>Mobile header appears</strong> with hamburger icon</li>
-          <li><strong>Click hamburger:</strong> Checkbox toggles, sidebar slides in</li>
-          <li><strong>Dark overlay</strong> appears behind sidebar using <span class="inline-code">::before</span></li>
-        </ol>
-      </div>
+          <button class="btn-toggle-solution" data-solution="solution-e1">💡 Show What's Happening</button>
+          <div class="solution-box hidden" id="solution-e1">
+            <h4>The Magic Explained:</h4>
+            <ol>
+              <li><strong>Desktop (>768px):</strong> Sidebar visible, mobile header hidden</li>
+              <li><strong>Mobile (≤768px):</strong> Sidebar slides off-screen to the left</li>
+              <li><strong>Mobile header appears</strong> with hamburger icon</li>
+              <li><strong>Click hamburger:</strong> Checkbox toggles, sidebar slides in</li>
+              <li><strong>Dark overlay</strong> appears behind sidebar using <span class="inline-code">::before</span></li>
+            </ol>
+          </div>
+        </div>
 
-      <div class="info-box warning">
-        <h4>⚠️ The order matters!</h4>
-        <p>In your HTML, the checkbox must come BEFORE the sidebar in the DOM. The <span class="inline-code">:checked</span> selector uses the sibling combinator (<span class="inline-code">~</span>) which only works with elements that come after the checkbox.</p>
-      </div>
+        <div class="info-box warning">
+          <h4>⚠️ Important: DOM Order Matters!</h4>
+          <p>The checkbox must come BEFORE the sidebar in your HTML. The <span class="inline-code">:checked</span> selector uses the sibling combinator (<span class="inline-code">~</span>) which only works with elements that come after the checkbox.</p>
+        </div>
 
-      <h3>✅ Self-Check:</h3>
-      <ul>
-        <li>Resize your browser below 768px — does the mobile header appear?</li>
-        <li>Click the hamburger — does the sidebar slide in from the left?</li>
-        <li>Click the × close button — does the sidebar slide out?</li>
-        <li>Do you see a dark overlay when the menu is open?</li>
-      </ul>
+        <div class="checkpoint" id="checkpoint-e">
+          <h4>✅ Checkpoint E</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Resize browser below 768px — mobile header appears</li>
+            <li><input type="checkbox"> Click hamburger — sidebar slides in from left</li>
+            <li><input type="checkbox"> Click × button — sidebar slides out</li>
+            <li><input type="checkbox"> Dark overlay appears when menu is open</li>
+          </ul>
+        </div>
 
-      <div class="reflection">
-        <h4>🧠 Reflection:</h4>
-        <p>Why use <span class="inline-code">transform: translateX(-100%)</span> instead of <span class="inline-code">left: -280px</span>? What performance benefits does transform provide?</p>
-      </div>
-    </section>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>Why use <span class="inline-code">transform: translateX(-100%)</span> instead of <span class="inline-code">left: -280px</span>? What performance benefits does transform provide?</p>
+          <textarea class="reflection-input" data-step="e" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="e">💾 Save Reflection</button>
+        </div>
+      </section>
 
-    <!-- PART F -->
-    <section id="part-f">
-      <h2><span class="part-number">F</span>Animate the Hamburger Icon</h2>
+      <!-- ===== PART F ===== -->
+      <section class="tutorial-section" id="part-f">
+        <div class="section-header">
+          <h2><span class="part-number">F</span>Animate the Hamburger Icon</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="f">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-      <p><strong>Goal:</strong> Transform the hamburger icon into an X when the menu is open.</p>
+        <p><strong>Goal:</strong> Transform the hamburger icon into an X when the menu is open.</p>
 
-      <h3>🎨 Your Task:</h3>
-      <p>Add these styles inside your mobile media query:</p>
+        <div class="step-card">
+          <h3>🎨 Hamburger Animation</h3>
 
-<pre><code>/* Hamburger animation to X */
+<pre><code>/* Add inside your mobile media query */
 .sidebar-toggle:checked ~ .main-content .hamburger span:nth-child(1) {
   transform: rotate(45deg) translate(7px, 7px);
 }
@@ -869,37 +472,52 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }</code></pre>
 
-      <div class="info-box">
-        <h4>💡 How the animation works:</h4>
-        <ul>
-          <li><strong>Top line:</strong> Rotates 45° and moves down-right to form top of X</li>
-          <li><strong>Middle line:</strong> Fades out completely</li>
-          <li><strong>Bottom line:</strong> Rotates -45° and moves up-right to form bottom of X</li>
-          <li>The <span class="inline-code">transition</span> we added earlier makes it smooth!</li>
-        </ul>
-      </div>
+          <button class="btn-toggle-solution" data-solution="solution-f1">💡 Show How It Works</button>
+          <div class="solution-box hidden" id="solution-f1">
+            <h4>Animation Breakdown:</h4>
+            <ul>
+              <li><strong>Top line:</strong> Rotates 45° and moves down-right to form top of X</li>
+              <li><strong>Middle line:</strong> Fades out completely</li>
+              <li><strong>Bottom line:</strong> Rotates -45° and moves up-right to form bottom of X</li>
+              <li>The <span class="inline-code">transition</span> makes it smooth!</li>
+            </ul>
+          </div>
+        </div>
 
-      <h3>✅ Self-Check:</h3>
-      <ul>
-        <li>On mobile, click the hamburger — does it animate to an X?</li>
-        <li>Click again — does it animate back to three lines?</li>
-        <li>Is the animation smooth?</li>
-      </ul>
-    </section>
+        <div class="checkpoint" id="checkpoint-f">
+          <h4>✅ Checkpoint F</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> On mobile, hamburger animates to X when clicked</li>
+            <li><input type="checkbox"> Click again — animates back to three lines</li>
+            <li><input type="checkbox"> Animation is smooth and visually appealing</li>
+          </ul>
+        </div>
 
-    <!-- PART G -->
-    <section id="part-g">
-      <h2><span class="part-number">G</span>Close Menu When Link is Clicked</h2>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>What other creative hamburger animations have you seen? How might you customize this one?</p>
+          <textarea class="reflection-input" data-step="f" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="f">💾 Save Reflection</button>
+        </div>
+      </section>
 
-      <p><strong>Goal:</strong> Automatically close the mobile menu when a user clicks a navigation link.</p>
+      <!-- ===== PART G ===== -->
+      <section class="tutorial-section" id="part-g">
+        <div class="section-header">
+          <h2><span class="part-number">G</span>Close Menu on Link Click</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="g">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-      <h3>💻 The Problem:</h3>
-      <div class="info-box warning">
-        <p>Right now, when you click a nav link on mobile, the page scrolls to the section but the sidebar stays open. Users have to manually close it — not ideal!</p>
-      </div>
+        <p><strong>Goal:</strong> Automatically close the mobile menu when a user clicks a navigation link.</p>
 
-      <h3>🎨 Your Task:</h3>
-      <p>Add this JavaScript before your closing <span class="inline-code">&lt;/body&gt;</span> tag:</p>
+        <div class="step-card">
+          <h3>💻 Add JavaScript</h3>
+          <p>This requires JavaScript — pure CSS can't handle this interaction:</p>
 
 <pre><code>&lt;script&gt;
   // Close mobile sidebar when a navigation link is clicked
@@ -914,86 +532,58 @@
   });
 &lt;/script&gt;</code></pre>
 
-      <div class="info-box">
-        <h4>💡 How it works:</h4>
-        <ol>
-          <li>Find all links in the sidebar navigation</li>
-          <li>Add a click listener to each link</li>
-          <li>When clicked, uncheck the checkbox</li>
-          <li>CSS sees unchecked state and hides the sidebar</li>
-        </ol>
-      </div>
+          <button class="btn-toggle-solution" data-solution="solution-g1">💡 Show How It Works</button>
+          <div class="solution-box hidden" id="solution-g1">
+            <h4>JavaScript Logic:</h4>
+            <ol>
+              <li>Find all links in the sidebar navigation</li>
+              <li>Add a click listener to each link</li>
+              <li>When clicked, uncheck the checkbox</li>
+              <li>CSS sees unchecked state and hides the sidebar</li>
+            </ol>
+          </div>
+        </div>
 
-      <h3>🎨 Bonus: Highlight Active Section</h3>
-      <p>Add this JavaScript to highlight the current section in the navigation:</p>
+        <div class="checkpoint" id="checkpoint-g">
+          <h4>✅ Checkpoint G</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> On mobile, open menu and click a link</li>
+            <li><input type="checkbox"> Menu closes automatically after click</li>
+            <li><input type="checkbox"> Page scrolls to the correct section</li>
+          </ul>
+        </div>
 
-<pre><code>&lt;script&gt;
-  // Highlight active section in navigation
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.sidebar-nav a');
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>We built most of this without JavaScript. Why add it now? What user experience problems can't be solved with pure CSS?</p>
+          <textarea class="reflection-input" data-step="g" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="g">💾 Save Reflection</button>
+        </div>
+      </section>
 
-  window.addEventListener('scroll', () => {
-    let current = '';
+      <!-- ===== PART H ===== -->
+      <section class="tutorial-section" id="part-h">
+        <div class="section-header">
+          <h2><span class="part-number">H</span>Polish the Content Area</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="h">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.pageYOffset >= sectionTop - 300) {
-        current = section.getAttribute('id');
-      }
-    });
+        <p><strong>Goal:</strong> Style the main content area to make it look professional.</p>
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  });
-&lt;/script&gt;</code></pre>
+        <div class="step-card">
+          <h3>🎨 Content Styling</h3>
 
-      <h3>✅ Self-Check:</h3>
-      <ul>
-        <li>On mobile, open menu and click a link — does it close automatically?</li>
-        <li>As you scroll, does the active link highlight in the sidebar?</li>
-      </ul>
-
-      <div class="reflection">
-        <h4>🧠 Reflection:</h4>
-        <p>We built most of this without JavaScript. Why add it now? What user experience problems can't be solved with pure CSS?</p>
-      </div>
-    </section>
-
-    <!-- PART H -->
-    <section id="part-h">
-      <h2><span class="part-number">H</span>Polish the Content Area</h2>
-
-      <p><strong>Goal:</strong> Style the main content area to make your tutorial look professional.</p>
-
-      <h3>🎨 Your Task:</h3>
-      <p>Add these styles for the content sections:</p>
-
-<pre><code>/* Content sections */
-.main-content section {
+<pre><code>.main-content section {
   padding: 3rem 2rem;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.main-content section h2 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.main-content section p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-/* Alternate section backgrounds */
 .main-content section:nth-child(odd) {
   background: #ffffff;
 }
@@ -1002,30 +592,7 @@
   background: #f8f9fa;
 }
 
-/* Add some visual interest */
-.main-content section::before {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  margin-bottom: 2rem;
-  border-radius: 2px;
-}
-
-/* Responsive content padding */
-@media (max-width: 768px) {
-  .main-content section {
-    padding: 2rem 1.5rem;
-  }
-
-  .main-content section h2 {
-    font-size: 2rem;
-  }
-}</code></pre>
-
-      <h3>🎨 Add Smooth Scrolling:</h3>
-<pre><code>html {
+html {
   scroll-behavior: smooth;
 }
 
@@ -1035,240 +602,165 @@
     scroll-margin-top: 70px;
   }
 }</code></pre>
+        </div>
 
-      <div class="info-box success">
-        <h4>✨ Design touches:</h4>
-        <ul>
-          <li>Alternating section backgrounds create visual rhythm</li>
-          <li>Decorative bar before each section adds personality</li>
-          <li>Max-width on sections prevents lines from being too long</li>
-          <li>Smooth scrolling makes navigation feel polished</li>
-        </ul>
-      </div>
-    </section>
+        <div class="checkpoint" id="checkpoint-h">
+          <h4>✅ Checkpoint H</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Sections have alternating backgrounds</li>
+            <li><input type="checkbox"> Smooth scrolling works on anchor links</li>
+            <li><input type="checkbox"> Content is centered with max-width</li>
+          </ul>
+        </div>
 
-    <!-- PART I -->
-    <section id="part-i">
-      <h2><span class="part-number">I</span>Accessibility & Final Touches</h2>
+        <div class="reflection-card">
+          <h4>🤔 Reflect (2–3 sentences):</h4>
+          <p>Why use <span class="inline-code">max-width</span> on content sections? What design principle does this support?</p>
+          <textarea class="reflection-input" data-step="h" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="h">💾 Save Reflection</button>
+        </div>
+      </section>
 
-      <p><strong>Goal:</strong> Ensure your navigation is accessible to all users, including those using keyboards and screen readers.</p>
+      <!-- ===== PART I ===== -->
+      <section class="tutorial-section" id="part-i">
+        <div class="section-header">
+          <h2><span class="part-number">I</span>Accessibility & Final Touches</h2>
+          <div class="section-progress">
+            <label class="checkbox-label">
+              <input type="checkbox" class="section-checkbox" data-step="i">
+              <span>Mark as complete</span>
+            </label>
+          </div>
+        </div>
 
-      <h3>🎨 Add ARIA Labels:</h3>
-      <p>Update your HTML with accessibility attributes:</p>
+        <p><strong>Goal:</strong> Ensure your navigation is accessible to all users.</p>
 
-<pre><code>&lt;!-- Checkbox with ARIA --&gt;
-&lt;input type="checkbox" id="sidebar-toggle"
+        <div class="step-card">
+          <h3>🎨 Add ARIA Labels</h3>
+
+<pre><code>&lt;input type="checkbox" id="sidebar-toggle"
        class="sidebar-toggle" aria-label="Toggle navigation menu"&gt;
 
-&lt;!-- Hamburger with ARIA --&gt;
 &lt;label for="sidebar-toggle" class="hamburger"
-       aria-label="Open navigation menu"&gt;
-  &lt;span&gt;&lt;/span&gt;
-  &lt;span&gt;&lt;/span&gt;
-  &lt;span&gt;&lt;/span&gt;
-&lt;/label&gt;
+       aria-label="Open navigation menu"&gt;...&lt;/label&gt;
 
-&lt;!-- Close button with ARIA --&gt;
-&lt;label for="sidebar-toggle" class="close-btn"
-       aria-label="Close navigation menu"&gt;&times;&lt;/label&gt;
+&lt;aside class="sidebar" role="navigation"
+       aria-label="Main navigation"&gt;...&lt;/aside&gt;</code></pre>
+        </div>
 
-&lt;!-- Sidebar with role --&gt;
-&lt;aside class="sidebar" role="navigation" aria-label="Main navigation"&gt;
-  &lt;!-- ... --&gt;
-&lt;/aside&gt;</code></pre>
+        <div class="step-card">
+          <h3>🎨 Add Focus Styles</h3>
 
-      <h3>🎨 Add Focus Styles:</h3>
-      <p>Make keyboard navigation visible:</p>
-
-<pre><code>/* Focus styles for keyboard navigation */
-.sidebar-nav a:focus-visible {
+<pre><code>.sidebar-nav a:focus-visible {
   outline: 3px solid #667eea;
   outline-offset: -3px;
 }
 
-.hamburger:focus-visible {
-  outline: 3px solid #667eea;
-  outline-offset: 3px;
-}
-
-.close-btn:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 3px;
-}
-
-/* Remove default focus styles (we've added better ones) */
-*:focus:not(:focus-visible) {
-  outline: none;
-}</code></pre>
-
-      <h3>🎨 Prevent Body Scroll When Menu is Open:</h3>
-      <p>On mobile, prevent background scrolling when sidebar is open:</p>
-
-<pre><code>&lt;script&gt;
-  const sidebarToggle = document.getElementById('sidebar-toggle');
-
-  sidebarToggle.addEventListener('change', () => {
-    if (sidebarToggle.checked) {
-      // Menu is open - prevent body scroll
-      document.body.style.overflow = 'hidden';
-    } else {
-      // Menu is closed - restore scrolling
-      document.body.style.overflow = '';
-    }
-  });
-&lt;/script&gt;</code></pre>
-
-      <div class="info-box success">
-        <h4>✨ Accessibility checklist:</h4>
-        <ul>
-          <li>✓ ARIA labels for screen readers</li>
-          <li>✓ Visible focus indicators for keyboard users</li>
-          <li>✓ Semantic HTML (aside, nav, main)</li>
-          <li>✓ Sufficient color contrast (test with tools)</li>
-          <li>✓ Touch targets at least 44×44px</li>
-          <li>✓ Works without JavaScript (basic functionality)</li>
-        </ul>
-      </div>
-
-      <h3>🎨 Optional Enhancements:</h3>
-      <div class="info-box">
-        <ul>
-          <li>Add a subtle box-shadow to the sidebar for depth</li>
-          <li>Include icons from Font Awesome or similar in navigation</li>
-          <li>Add a "Skip to main content" link for keyboard users</li>
-          <li>Create a reduced-motion variant for users who prefer less animation</li>
-          <li>Add meta tags for better mobile rendering</li>
-        </ul>
-      </div>
-
-      <h3>🎨 Reduced Motion Support:</h3>
-<pre><code>/* Respect user's motion preferences */
+/* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }</code></pre>
+        </div>
 
-      <div class="reflection">
-        <h4>🧠 Final Reflection:</h4>
-        <p>How does the sidebar-to-mobile-nav pattern compare to other responsive navigation patterns you've seen? In what situations would you choose this pattern over alternatives like a persistent top nav or a bottom tab bar?</p>
-      </div>
-    </section>
+        <div class="info-box success">
+          <h4>✨ Accessibility Checklist:</h4>
+          <ul>
+            <li>✓ ARIA labels for screen readers</li>
+            <li>✓ Visible focus indicators for keyboard users</li>
+            <li>✓ Semantic HTML (aside, nav, main)</li>
+            <li>✓ Sufficient color contrast</li>
+            <li>✓ Touch targets at least 44×44px</li>
+            <li>✓ Respects user motion preferences</li>
+          </ul>
+        </div>
 
-    <!-- SUBMISSION -->
-    <section id="submission">
-      <h2><span class="part-number">✓</span>Complete Code & Next Steps</h2>
+        <div class="checkpoint" id="checkpoint-i">
+          <h4>✅ Checkpoint I</h4>
+          <ul class="checklist">
+            <li><input type="checkbox"> Added ARIA labels to interactive elements</li>
+            <li><input type="checkbox"> Focus styles are visible when tabbing</li>
+            <li><input type="checkbox"> Tested with keyboard navigation</li>
+            <li><input type="checkbox"> Added reduced-motion support</li>
+          </ul>
+        </div>
 
-      <h3>📦 Full HTML Template:</h3>
-      <p>Here's a minimal complete example you can copy and use as a starting point:</p>
+        <div class="reflection-card">
+          <h4>🤔 Final Reflection:</h4>
+          <p>How does this pattern compare to other responsive navigation patterns? When would you choose this over alternatives?</p>
+          <textarea class="reflection-input" data-step="i" placeholder="Write your reflection here..."></textarea>
+          <button class="btn-save-reflection" data-step="i">💾 Save Reflection</button>
+        </div>
+      </section>
 
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Sidebar Navigation&lt;/title&gt;
-  &lt;!-- Add your CSS here --&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class="layout-container"&gt;
-    &lt;input type="checkbox" id="sidebar-toggle" class="sidebar-toggle"&gt;
+      <!-- ===== COMPLETION ===== -->
+      <section class="tutorial-section" id="complete">
+        <div class="section-header">
+          <h2><span class="part-number">✓</span>You Did It!</h2>
+        </div>
 
-    &lt;aside class="sidebar"&gt;
-      &lt;div class="sidebar-header"&gt;
-        &lt;h2&gt;My Site&lt;/h2&gt;
-        &lt;label for="sidebar-toggle" class="close-btn"&gt;&times;&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;nav class="sidebar-nav"&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href="#services"&gt;Services&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/nav&gt;
-    &lt;/aside&gt;
+        <div class="info-box success">
+          <h4>🎉 Congratulations!</h4>
+          <p>You've built a professional sidebar-to-mobile navigation system that adapts beautifully across devices. This pattern is used by countless web applications and is a valuable skill in your development toolkit.</p>
+        </div>
 
-    &lt;main class="main-content"&gt;
-      &lt;div class="mobile-header"&gt;
-        &lt;label for="sidebar-toggle" class="hamburger"&gt;
-          &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
-        &lt;/label&gt;
-        &lt;h1&gt;My Site&lt;/h1&gt;
-      &lt;/div&gt;
+        <div class="step-card">
+          <h3>🚀 Challenge Yourself</h3>
+          <p>Try these enhancements to level up:</p>
+          <ul>
+            <li>Add a nested submenu with expand/collapse functionality</li>
+            <li>Create a tablet breakpoint (between mobile and desktop)</li>
+            <li>Add a search bar to the sidebar</li>
+            <li>Implement a "dark mode" toggle</li>
+            <li>Add swipe gestures for mobile menu</li>
+            <li>Create a "mini" collapsed sidebar mode for desktop</li>
+          </ul>
+        </div>
 
-      &lt;section id="home"&gt;
-        &lt;h2&gt;Home&lt;/h2&gt;
-        &lt;p&gt;Your content here...&lt;/p&gt;
-      &lt;/section&gt;
+        <div class="step-card">
+          <h3>📚 Further Learning</h3>
+          <ul>
+            <li><strong>MDN:</strong> Responsive design principles</li>
+            <li><strong>CSS-Tricks:</strong> Off-canvas navigation patterns</li>
+            <li><strong>A11y Project:</strong> Accessible navigation menus</li>
+            <li><strong>Web.dev:</strong> Mobile-first development</li>
+          </ul>
+        </div>
 
-      &lt;!-- More sections... --&gt;
-    &lt;/main&gt;
-  &lt;/div&gt;
+        <div class="info-box">
+          <h4>🎯 Key Takeaways</h4>
+          <ul>
+            <li><strong>Layout flexibility:</strong> Flexbox makes responsive layouts manageable</li>
+            <li><strong>Progressive enhancement:</strong> Start with working HTML, enhance with CSS/JS</li>
+            <li><strong>Media queries:</strong> Different layouts for different screen sizes</li>
+            <li><strong>Checkbox hack:</strong> Pure CSS state management (with limitations)</li>
+            <li><strong>Accessibility matters:</strong> Always consider keyboard and screen reader users</li>
+            <li><strong>Performance:</strong> Use transforms for animations, not position properties</li>
+          </ul>
+        </div>
+      </section>
 
-  &lt;!-- Add your JavaScript here --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-      <h3>🚀 Challenge Yourself:</h3>
-      <div class="info-box">
-        <ul>
-          <li>Add a nested submenu with expand/collapse functionality</li>
-          <li>Create a tablet breakpoint (between mobile and desktop)</li>
-          <li>Add a search bar to the sidebar</li>
-          <li>Implement a "dark mode" toggle</li>
-          <li>Add swipe gestures to open/close the mobile menu</li>
-          <li>Create a "mini" collapsed sidebar mode for desktop</li>
-        </ul>
-      </div>
-
-      <h3>📚 Further Learning:</h3>
-      <ul>
-        <li><strong>MDN:</strong> Responsive design principles</li>
-        <li><strong>CSS-Tricks:</strong> Off-canvas navigation patterns</li>
-        <li><strong>A11y Project:</strong> Accessible navigation menus</li>
-        <li><strong>Web.dev:</strong> Mobile-first development</li>
-        <li><strong>Smashing Magazine:</strong> Navigation design patterns</li>
-      </ul>
-
-      <h3>🎯 Key Takeaways:</h3>
-      <div class="info-box success">
-        <ul>
-          <li><strong>Layout flexibility:</strong> Flexbox makes responsive layouts manageable</li>
-          <li><strong>Progressive enhancement:</strong> Start with working HTML, enhance with CSS/JS</li>
-          <li><strong>Media queries:</strong> Different layouts for different screen sizes</li>
-          <li><strong>Checkbox hack:</strong> Pure CSS state management (with limitations)</li>
-          <li><strong>Accessibility matters:</strong> Always consider keyboard and screen reader users</li>
-          <li><strong>Performance:</strong> Use transforms for animations, not position properties</li>
-        </ul>
-      </div>
-
-      <div class="info-box success">
-        <h4>🎉 Congratulations!</h4>
-        <p>You've built a professional sidebar-to-mobile navigation system that adapts beautifully across devices. This pattern is used by countless web applications and will be a valuable addition to your development toolkit.</p>
-      </div>
-    </section>
     </main>
 
-    <!-- CodePen Area (Right side, Sticky) -->
-    <div class="codepen-area">
-      <div class="codepen-header">
+    <!-- CodePen Workspace (Right side, sticky) -->
+    <div class="codepen-workspace">
+      <div class="workspace-header">
         <h3>Your Workspace</h3>
         <p>Code along as you follow the tutorial →</p>
       </div>
-       <iframe
-            height="100%"
-            style="width: 100%;"
-            scrolling="no"
-            title="Flexbox Tutorial Starter"
-            src="https://codepen.io/tmasingale/pen/jEWQvbN"
-            frameborder="no"
-            loading="lazy"
-            allowtransparency="true"
-            allowfullscreen="true">
-          </iframe>
+      <iframe
+        height="100%"
+        style="width: 100%;"
+        scrolling="no"
+        title="Sidebar to Mobile Nav - Starter"
+        src="https://codepen.io/tmasingale/pen/jEWQvbN"
+        frameborder="no"
+        loading="lazy"
+        allowtransparency="true"
+        allowfullscreen="true">
+      </iframe>
     </div>
   </div>
 
@@ -1277,20 +769,6 @@
     <p>Remember: The best way to learn is by building. Experiment, break things, and learn from the process!</p>
   </footer>
 
-  <script>
-    // Smooth scroll for anchor links (if needed)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-  </script>
+  <script src="tutorial.js"></script>
 </body>
 </html>
